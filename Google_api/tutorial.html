@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+        <h1>Göteborg</h1>
+        <div id="map"></div>
+        <script>
+            function initMap(){
+                
+                var options = {
+                    zoom: 8,
+                    center:{lat:57.715359,lng:-11.976978}
+                };
+
+                
+                var map = new google.maps.Map(document.getElementById('map'), options);
+
+                
+                var marker = new google.maps.Marker({
+                    position{lat:57.643340, lng:11.920364},
+                    map : map,
+                    icon
+                });
+            }
+         </script>
+         <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNXHGRK9C-AYOPXBtmWSv0l4h8VwZqtrc&callback=initMap">
+    </script>
+  </body>
+</html>

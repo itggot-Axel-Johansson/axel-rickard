@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hitta fotbollsplanen</title>
+    <style>
+    #map{height:400px;
+    width: 100%;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Göteborg</h1>
+    <div id="map"></div>
+    <script>
+    function initMap(){
+      // Map options
+      var options = {
+        zoom:10,
+        center:{lat:57.715359,lng:11.976978}
+      }
+      // New map
+      var map = new google.maps.Map(document.getElementById('map'), options);
+      /*
+      // Add Marker
+      var marker = new google.maps.Marker({
+        position:{lat:57.643340, lng:11.920364}, //Göteborg
+        map:map,
+      });
+      var infoWindow = new google.maps.InfoWindow({
+        content: '<h1>Välens fotbollsplan</h1>'
+      });
+      marker.addListener('click', function(){
+        infoWindow.open(map, marker);
+      });
+      */
+      // Lista över alla fotbollsplaner
+      var listan = [
+        
+          { //Välen
+            coords:{lat:57.643340, lng:11.920364},
+            iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            content: '<h1>Välen</h1>'
+          }, 
+          { //Heden 
+            coords:{lat:57.702697, lng:11.978405},
+            content:'<h1>Heden</h1>'
+          }, 
+        
+      ];
+
+      //loopar genom alla addMarker funktioner i listan
+      for(var i = 0; i < listan.length; i = i+1){
+        addMarker(listan[i]);
+      }
+
+/* //Kalla på addMaker funktion en och en.
+      addMarker({coords:{lat:57.643340, lng:11.920364},
+      iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+      content: '<h1>Välen</h1>'
+      }); //Välen
+      addMarker({coords:{lat:57.702697, lng:11.978405},
+      content:'<h1>Heden</h1>'}); //Heden
+*/
+      // Add Marker function
+      function addMarker(properties){
+        var marker = new google.maps.Marker({
+          position:properties.coords,
+          map:map,
+         // icon:properties.iconImage,
+      });
+      // Kollar om iconimage finns i properties
+          if(properties.iconImage){
+            //set icon image
+            marker.setIcon(properties.iconImage);
+            }
+        // kollar vad för contentwindows som ska finnas
+            if(properties.content){
+              var infoWindow = new google.maps.InfoWindow({
+                content:properties.content
+              });
+              marker.addListener('click', function(){
+                infoWindow.open(map, marker);
+              });
+            }
+          }
+        }
+    </script> 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNXHGRK9C-AYOPXBtmWSv0l4h8VwZqtrc&callback=initMap">
+    </script>
+  </body>
+</html>
